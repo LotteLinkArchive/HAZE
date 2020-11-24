@@ -24,4 +24,7 @@ STATUS hztex_fd_torgba32(INAT fd, SX size, OX offset, struct hztex_loaded *outpu
 
 /* Free a surface/texture after it has been loaded, in case you used a function like hztex_fd_torgba32 */
 STATUS hztex_free_surf(struct hztex_loaded *output);
+
+/* Load a SRTEX file (by fopenable path) into memory (destroy with hztex_free_surf ONLY) */
+STATUS hztex_load_file(CHR *filename, struct hztex_loaded *output);
 #endif

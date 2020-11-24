@@ -74,3 +74,23 @@ STATUS hztex_free_surf(struct hztex_loaded *output)
 	free(output->free_address);
 	return ST_NO_ERROR;
 }
+
+STATUS hztex_load_file(CHR *filename, struct hztex_loaded *output)
+{
+	/* Open the file */
+	FILE *fp = fopen(filename, "r");
+	if (!fp) return ST_FILE_FAILURE;
+
+	/* Get the size of the file by seeking to the end and then back to the beginning again */
+	if (fseek(fp, 0, SEEK_END) != 0) {
+		fclose(fp);
+		return ST_FILE_FAILURE;
+	}
+	SX size_boundary = ftell(fp);
+	rewind(fp);
+
+	STATUS decstat = hztex_fd_torgba32(fileno(fp), size_boundary, 0, output);
+	fclose(fp);
+
+	return decstat;
+}
