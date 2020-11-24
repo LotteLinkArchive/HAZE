@@ -1,12 +1,7 @@
 #include "hztexldr.h"
+#include "umman.h"
 
-STATUS hztex_torgba32(
-	X0 *blob,
-	SX size_boundary,
-	U16 *width,
-	U16 *height,
-	SX *data_length,
-	X0 **output)
+STATUS hztex_torgba32(X0 *blob, SX size_boundary, struct hztex_loaded *output)
 {
 	/* Prepare to read the header */
 	struct SRTHeader *head = blob;
@@ -30,11 +25,52 @@ STATUS hztex_torgba32(
 	/* Verify the image body checksum */
 	if (head->checksum != fnv1b16((U8 *)body, head->data_length))      return ST_CORRUPT_DATA;
 
-	if (output)      *output      = body;
-	if (width)       *width       = head->width;
-	if (height)      *height      = head->height;
-	if (data_length) *data_length = head->data_length; 
+	output->pixels      = body;
+	output->width       = head->width;
+	output->height      = head->height;
+	output->data_length = head->data_length; 
 
 	/* Return the OK state */
+	return ST_NO_ERROR;
+}
+
+STATUS hztex_fd_torgba32(INAT fd, SX size, OX offset, struct hztex_loaded *output)
+{
+	/* Invalidate invalid sizes */
+	if (size < SRT_HEADER_WIDTH) return ST_INVALID_DATA;
+
+	/* Map the file to memory */
+	X0 *mapped = ummap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, offset);
+
+	/* If the map failed, return now. */
+	if (!mapped) return ST_MAP_FAILURE;
+
+	/* Try to create a canvas out of it */
+	STATUS decstat = hztex_torgba32(mapped, size, output);
+
+	/* If it failed, remove the mapping and exit, returning the heztex_torgba32 code */
+	if (decstat != ST_NO_ERROR) {
+		umunmap(mapped, size);
+		return decstat;
+	}
+
+	/* Set the neccessary unmapping details */
+	output->free_address = mapped;
+	output->munmap_size = size;
+	output->mmapped = true;
+
+	return ST_NO_ERROR;
+}
+
+STATUS hztex_free_surf(struct hztex_loaded *output)
+{
+	if (!output->free_address) return ST_NULL_FED;
+
+	if (output->mmapped) {
+		if (umunmap(output->free_address, output->munmap_size) != 0) return ST_MAP_FAILURE;
+		return ST_NO_ERROR;
+	}
+
+	free(output->free_address);
 	return ST_NO_ERROR;
 }
