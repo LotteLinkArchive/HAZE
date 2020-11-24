@@ -18,7 +18,7 @@ FORCED_STATIC_INLINE U16 fnv1b16(U8 *bytes, UNAT length)
 }
 
 /* Defines the structure of an SRT texture header. */
-__extension__ struct SRTHeader {
+__extension__ struct srtexhdr {
 	/* The SRT magic number, 0xEAE5833F */
 	U32 magicno;
 
@@ -43,6 +43,6 @@ __extension__ struct SRTHeader {
 	 */
 } __attribute__ ((packed));
 
-#define SRT_HEADER_WIDTH sizeof(struct SRTHeader)
+#define SRT_HEADER_WIDTH sizeof(struct srtexhdr)
 
 #endif

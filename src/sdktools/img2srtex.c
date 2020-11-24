@@ -26,7 +26,7 @@ I32 main(I32 argc, CHR *argv[])
 
 	printf("stbi_load(): decoding \"%s\"\n", argv[1]);
 
-	struct SRTHeader newsrt = SRT_INIT;
+	struct srtexhdr newsrt = SRT_INIT;
 	I32 x, y, z;
 	idata = (CHR *)stbi_load(argv[1], &x, &y, &z, 4);
 	newsrt.width = (U32)x;

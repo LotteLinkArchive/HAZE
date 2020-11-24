@@ -4,7 +4,7 @@
 STATUS hztex_torgba32(X0 *blob, SX size_boundary, struct hztex_loaded *output)
 {
 	/* Prepare to read the header */
-	struct SRTHeader *head = blob;
+	struct srtexhdr *head = blob;
 
 	/* Perform careful boundary checking before accessing anything to try to prevent a buffer overflow */
 	if  (size_boundary  < SRT_HEADER_WIDTH)                            return ST_BUFFER_OVERFLOW;
