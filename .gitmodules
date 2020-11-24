@@ -1,0 +1,6 @@
+[submodule "src/lib/holyh"]
+	path = src/lib/holyh
+	url = https://git.lotte.link/naphtha/HolyH
+[submodule "src/lib/stb"]
+	path = src/lib/stb
+	url = https://github.com/nothings/stb

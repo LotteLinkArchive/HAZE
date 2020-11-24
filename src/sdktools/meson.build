@@ -1,0 +1,1 @@
+executable('img2srtex', 'img2srtex.c', install : true)

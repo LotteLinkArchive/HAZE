@@ -1,0 +1,2 @@
+hzumman = library('hzumman', ['umman.c'], version : '0.0.0', soversion : '0', install : true)
+hztexldr = library('hztexldr', ['hztexldr.c'], version : '0.0.0', soversion : '0', link_with : hzumman, install : true)
