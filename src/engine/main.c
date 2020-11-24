@@ -48,7 +48,6 @@ INAT main(INAT argc, CHR *argv[])
 
 		SDL_GetWindowSize(primarywin.window, &primarywin.width, &primarywin.height);
 
-		glViewport(0, 0, primarywin.width, primarywin.height);
 		glClearColor(1.f, 0.f, 1.f, 0.f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
