@@ -1,0 +1,1 @@
+executable('haze', 'main.c', link_with : hztexldr, dependencies : [sdl2_dep, thread_dep, gl_dep], install : true)
