@@ -1,7 +1,7 @@
 #include "sdlimp.h"
 #include "engine.h"
 
-void fataltrigger(CHR *s)
+void errwindow(CHR *s)
 {
 	printf("ERROR: %s\n", s);
 

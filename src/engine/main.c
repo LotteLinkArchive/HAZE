@@ -8,5 +8,5 @@
 INAT main(INAT argc, CHR *argv[])
 {
 	printf("-- it works --\n");
-	fataltrigger("test");
+	errwindow("test");
 }
