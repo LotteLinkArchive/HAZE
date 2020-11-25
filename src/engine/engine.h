@@ -14,11 +14,12 @@ struct hzwinprop {
 };
 
 extern struct hzwinprop primarywin;
+extern toml_table_t *gameconf;
 
 /* Display a fatal error via SDL */
 H_EXTERN X0 errwindow(const CHR *s, ...);
 /* Toggle primary window fullscreen state */
 H_EXTERN X0 togglefullscreen();
-/* Malloc/realloc which reports memory errors and exits. */
-H_EXTERN X0 *oomrealloc(X0 *ptr, SX size);
+/* Cleanup before exit */
+H_EXTERN X0 cleanup();
 #endif
