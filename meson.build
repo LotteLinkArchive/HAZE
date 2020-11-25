@@ -1,4 +1,4 @@
-project('SurRender', 'c')
+project('HAZE', 'c')
 
 cc = meson.get_compiler('c')
 
