@@ -37,9 +37,7 @@ INAT umunmap(X0 *addr, SX length)
 	#ifdef UMM_METHOD_MMAN
 	return munmap(addr, length);
 	#elif defined(UMM_METHOD_MALLOC)
-	/* Literally do nothing. Windows users deserve memory leaks.
-	 * (If anyone would like to introduce a better solution, feel free.)
-	 */
+	free(addr); /* POTENTIALLY UNSAFE */
 	return 0;
 	#endif
 }
