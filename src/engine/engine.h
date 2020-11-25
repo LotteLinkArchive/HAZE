@@ -19,4 +19,6 @@ extern struct hzwinprop primarywin;
 H_EXTERN X0 errwindow(const CHR *s, ...);
 /* Toggle primary window fullscreen state */
 H_EXTERN X0 togglefullscreen();
+/* Malloc/realloc which reports memory errors and exits. */
+H_EXTERN X0 *oomrealloc(X0 *ptr, SX size);
 #endif

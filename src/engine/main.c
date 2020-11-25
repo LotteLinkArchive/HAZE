@@ -1,3 +1,4 @@
+#include <SDL2/SDL_error.h>
 #include <stdlib.h>
 #define SDL_MAIN_HANDLED
 #include "sdlimp.h"
@@ -14,7 +15,7 @@ __extension__ struct hzwinprop primarywin = {};
 INAT main(INAT argc, CHR *argv[])
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		errwindow("Unable to initialize video!");
+		errwindow("Unable to initialize video!\n SDL Error: %s", SDL_GetError());
 	}
 
 	primarywin.winflags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
@@ -27,11 +28,14 @@ INAT main(INAT argc, CHR *argv[])
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		DEFWIDTH, DEFHEIGHT,
 		primarywin.winflags))) {
-		errwindow("Unable to create primary window!");
+		errwindow("Unable to create the primary window!\n SDL Error: %s", SDL_GetError());
 	}
 
 	if (!(primarywin.glcontext = SDL_GL_CreateContext(primarywin.window))) {
-		errwindow("Unable to create GL context!");
+		errwindow("Unable to create GL context! Does your device support OpenGL?\n"
+			"Are you sure you're using the very latest versions of your graphics drivers?\n"
+			"You might be able to resolve this by using Mesa software rendering.\n\n"
+			"SDL Error: %s", SDL_GetError());
 	}
 
 	while (!primarywin.quit) {
