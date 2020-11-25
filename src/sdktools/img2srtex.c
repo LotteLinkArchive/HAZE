@@ -1,4 +1,3 @@
-#include "../shared/global.h"
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_NO_LINEAR
 #define STBI_NO_HDR
