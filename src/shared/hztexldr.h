@@ -19,14 +19,14 @@ struct hztex_loaded {
 /* Interprets a SRTEX/.srt, located at <blob> of length <size_boundary>.
  * If status is okay, will populate all values in the hztex_loaded output struct.
  */
-STATUS hztex_torgba32(X0 *blob, SX size_boundary, struct hztex_loaded *output);
+H_EXTERN STATUS hztex_torgba32(X0 *blob, SX size_boundary, struct hztex_loaded *output);
 
 /* Efficient loading of textures from files via file descriptor, size and offset. Will malloc or mmap. */
-STATUS hztex_fd_torgba32(INAT fd, SX size, OX offset, struct hztex_loaded *output);
+H_EXTERN STATUS hztex_fd_torgba32(INAT fd, SX size, OX offset, struct hztex_loaded *output);
 
 /* Free a surface/texture after it has been loaded, in case you used a function like hztex_fd_torgba32 */
-STATUS hztex_free_surf(struct hztex_loaded *output);
+H_EXTERN STATUS hztex_free_surf(struct hztex_loaded *output);
 
 /* Load a SRTEX file (by fopenable path) into memory (destroy with hztex_free_surf ONLY) */
-STATUS hztex_load_file(CHR *filename, struct hztex_loaded *output);
+H_EXTERN STATUS hztex_load_file(CHR *filename, struct hztex_loaded *output);
 #endif

@@ -1,6 +1,12 @@
 #ifndef SURENV_HEADER_FILE
 #define SURENV_HEADER_FILE
 
+#ifdef __cplusplus
+#define H_EXTERN extern "C"
+#else
+#define H_EXTERN extern
+#endif
+
 #ifdef __unix__
 #define ENV_ADV_UNIX
 #endif

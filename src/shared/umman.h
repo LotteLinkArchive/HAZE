@@ -10,8 +10,8 @@
 #endif
 
 /* See manpage mmap(2) */
-X0 *ummap(X0 *addr, SX length, INAT prot, INAT flags, INAT fd, OX offset);
-INAT umunmap(X0 *addr, SX length);
+H_EXTERN X0 *ummap(X0 *addr, SX length, INAT prot, INAT flags, INAT fd, OX offset);
+H_EXTERN INAT umunmap(X0 *addr, SX length);
 
 #ifdef UMM_METHOD_MMAN
 #include <sys/mman.h>

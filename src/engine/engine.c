@@ -1,6 +1,6 @@
 #include "engine.h"
 
-void errwindow(CHR *s)
+X0 errwindow(CHR *s)
 {
 	printf("ERROR: %s\n", s);
 
@@ -21,9 +21,9 @@ void errwindow(CHR *s)
 	exit(EXIT_FAILURE);
 }
 
-void togglefullscreen(struct hzwinprop window)
+X0 togglefullscreen()
 {
-	if (!window.fullscreen) {
+	if (!primarywin.fullscreen) {
 		SDL_SetWindowFullscreen(primarywin.window, primarywin.winflags | SDL_WINDOW_FULLSCREEN_DESKTOP);
 	} else {
 		SDL_SetWindowFullscreen(primarywin.window, primarywin.winflags);
