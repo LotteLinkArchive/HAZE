@@ -1,8 +1,18 @@
 #include "engine.h"
+#include <stdio.h>
 
-X0 errwindow(CHR *s)
+X0 errwindow(const CHR *s, ...)
 {
-	printf("ERROR: %s\n", s);
+	#ifndef HZ_MAX_ERROR_LENGTH
+	#define HZ_MAX_ERROR_LENGTH 4096
+	#endif
+
+	char buffer[HZ_MAX_ERROR_LENGTH];
+	va_list args;
+
+	va_start(args, s);
+	vsnprintf(buffer, HZ_MAX_ERROR_LENGTH, s, args);
+	fprintf(stderr, "FATAL ERROR: %s\n", buffer);
 
 	if(SDL_WasInit(SDL_INIT_VIDEO)) {
 		SDL_ShowCursor(SDL_TRUE);
@@ -16,7 +26,8 @@ X0 errwindow(CHR *s)
 	}
 
 	SDL_Quit();
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "HAZE Fatal Exception", s, NULL);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "HAZE Fatal Exception", buffer, NULL);
+	va_end(args);
 
 	exit(EXIT_FAILURE);
 }
