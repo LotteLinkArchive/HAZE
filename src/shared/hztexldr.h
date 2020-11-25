@@ -2,6 +2,8 @@
 #define HZTEXLDR_HEADER_FILE
 #include "srtex.h"
 #include "errors.h"
+#include "umman.h"
+#include "crypto.h"
 
 /* Struct for a loaded texture */
 struct hztex_loaded {

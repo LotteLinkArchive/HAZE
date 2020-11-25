@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "../shared/srtex.h"
+#include "../shared/hzshared.h"
 
 I32 main(I32 argc, CHR *argv[])
 {

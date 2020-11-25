@@ -3,7 +3,7 @@
 #include "sdlimp.h"
 #include <stdio.h>
 #include <string.h>
-#include "../shared/global.h"
+#include "../shared/hzshared.h"
 #include "engine.h"
 
 #define DEFWIDTH 800

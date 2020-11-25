@@ -1,7 +1,7 @@
 #ifndef HZENGIN_HEADER_FILE
 #define HZENGIN_HEADER_FILE
 #include "sdlimp.h"
-#include "../shared/global.h"
+#include "../shared/hzshared.h"
 /* Display a fatal error via SDL */
 void errwindow(CHR *s);
 

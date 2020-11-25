@@ -1,1 +1,1 @@
-executable('haze', ['main.c', 'engine.c'], link_with : hztexldr, dependencies : [sdl2_dep, thread_dep, gl_dep], install : true)
+executable('haze', ['main.c', 'engine.c'], link_with : hzshared, dependencies : [sdl2_dep, thread_dep, gl_dep], install : true)

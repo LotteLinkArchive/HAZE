@@ -5,18 +5,6 @@
 #define SRT_MAGIC_NUMBER 0xEAE5833F
 #define SRT_INIT { .magicno = SRT_MAGIC_NUMBER }
 
-FORCED_STATIC_INLINE U16 fnv1b16(U8 *bytes, UNAT length)
-{
-	U32 prefold_hash = 0x811C9DC5;
-
-	while (length--) {
-		prefold_hash ^= *bytes++;
-		prefold_hash *= 0x01000193;
-	}
-
-	return (prefold_hash & 0x0000FFFF) ^ ((prefold_hash & 0xFFFF0000) >> 16);
-}
-
 /* Defines the structure of an SRT texture header. */
 __extension__ struct srtexhdr {
 	/* The SRT magic number, 0xEAE5833F */

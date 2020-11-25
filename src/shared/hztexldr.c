@@ -1,5 +1,4 @@
 #include "hztexldr.h"
-#include "umman.h"
 
 STATUS hztex_torgba32(X0 *blob, SX size_boundary, struct hztex_loaded *output)
 {

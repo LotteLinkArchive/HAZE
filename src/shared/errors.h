@@ -1,4 +1,4 @@
-#ifndef HzERR_HEADER_FILE
+#ifndef HZERR_HEADER_FILE
 #define HZERR_HEADER_FILE
 #include "global.h"
 

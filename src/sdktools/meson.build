@@ -1,1 +1,1 @@
-executable('img2srtex', 'img2srtex.c', install : true)
+executable('img2srtex', 'img2srtex.c', link_with : hzshared, install : true)
