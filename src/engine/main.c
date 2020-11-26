@@ -59,6 +59,9 @@ INAT main(INAT argc, CHR *argv[])
 			"You might be able to resolve this by using Mesa software rendering.\n\n"
 			"SDL Error: %s", SDL_GetError());
 
+	/* This makes our buffer swap syncronized with the monitor's vertical refresh */
+	SDL_GL_SetSwapInterval(1);
+
 	if (get_conf_prop_err("window.start_fullscreen", gameconf, TOML_BOOL).u.d.u.b) togglefullscreen();
 
 	while (!primarywin.quit) {
