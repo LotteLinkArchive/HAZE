@@ -1,6 +1,7 @@
 #include "engine.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <inttypes.h>
 
 X0 errwindow(const CHR *s, ...)
 {
@@ -16,6 +17,7 @@ X0 errwindow(const CHR *s, ...)
 	if (vsnprintf(buffer, HZ_MAX_ERROR_LENGTH, s, args) < 0)
 		strcpy(buffer,
 			"errwindow() was unable to format the fatal exception message while handling an exception.\0");
+	
 	fprintf(stderr, "FATAL ERROR: %s\n", buffer);
 
 	cleanup();
