@@ -9,9 +9,10 @@ X0 errwindow(const CHR *s, ...)
 	#endif
 
 	CHR buffer[HZ_MAX_ERROR_LENGTH];
+	
 	va_list args;
-
 	va_start(args, s);
+
 	if (vsnprintf(buffer, HZ_MAX_ERROR_LENGTH, s, args) < 0)
 		strcpy(buffer,
 			"errwindow() was unable to format the fatal exception message while handling an exception.\0");
@@ -19,6 +20,7 @@ X0 errwindow(const CHR *s, ...)
 
 	cleanup();
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "HAZE Fatal Exception", buffer, NULL);
+
 	va_end(args);
 
 	exit(EXIT_FAILURE);
