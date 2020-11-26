@@ -60,6 +60,8 @@ INAT main(INAT argc, CHR *argv[])
 			"You might be able to resolve this by using Mesa software rendering.\n\n"
 			"SDL Error: %s", SDL_GetError());
 
+	if (get_conf_prop("window.start_fullscreen", gameconf, toml_bool_in).u.b) togglefullscreen();
+
 	while (!primarywin.quit) {
 		SDL_Event Event;
 		while (SDL_PollEvent(&Event)) {

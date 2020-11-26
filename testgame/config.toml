@@ -2,3 +2,4 @@
 width = 640
 height = 480
 title = "HAZE Test Game"
+start_fullscreen = false
