@@ -3,4 +3,5 @@
 #include "engine.h"
 /* Malloc/realloc which reports memory errors and exits. */
 H_EXTERN X0 *oomrealloc(X0 *ptr, SX size);
+#define oommalloc(size) oomrealloc(NULL, size);
 #endif
