@@ -1,4 +1,3 @@
-#include <SDL2/SDL_error.h>
 #include <stdlib.h>
 #define SDL_MAIN_HANDLED
 #include "sdlimp.h"
