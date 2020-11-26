@@ -44,12 +44,12 @@ INAT main(INAT argc, CHR *argv[])
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-	CHR *title = get_conf_prop("window.title", gameconf, toml_string_in).u.s;
+	CHR *title = get_conf_prop_err("window.title", gameconf, TOML_STRING).u.d.u.s;
 	if (!(primarywin.window = SDL_CreateWindow(
 		title,
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		get_conf_prop("window.width", gameconf, toml_int_in).u.i,
-		get_conf_prop("window.height", gameconf, toml_int_in).u.i,
+		get_conf_prop_err("window.width", gameconf, TOML_INT).u.d.u.i,
+		get_conf_prop_err("window.height", gameconf, TOML_INT).u.d.u.i,
 		primarywin.winflags)))
 		errwindow("Unable to create the primary window!\n SDL Error: %s", SDL_GetError());
 	free(title);
@@ -60,7 +60,7 @@ INAT main(INAT argc, CHR *argv[])
 			"You might be able to resolve this by using Mesa software rendering.\n\n"
 			"SDL Error: %s", SDL_GetError());
 
-	if (get_conf_prop("window.start_fullscreen", gameconf, toml_bool_in).u.b) togglefullscreen();
+	if (get_conf_prop_err("window.start_fullscreen", gameconf, TOML_BOOL).u.d.u.b) togglefullscreen();
 
 	while (!primarywin.quit) {
 		SDL_Event Event;
