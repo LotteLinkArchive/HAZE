@@ -31,6 +31,8 @@ X0 togglefullscreen()
 	} else {
 		SDL_SetWindowFullscreen(primarywin.window, primarywin.winflags);
 	}
+
+	primarywin.fullscreen = !primarywin.fullscreen;
 }
 
 X0 cleanup()
