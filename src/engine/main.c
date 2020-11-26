@@ -83,5 +83,4 @@ INAT main(INAT argc, CHR *argv[])
 
 	cleanup();
 	return EXIT_SUCCESS;
-
 }
