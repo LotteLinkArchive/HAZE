@@ -12,7 +12,7 @@ toml_accessor_t get_conf_prop(
 	#endif
 
 	CHR accbuf[MAX_ACCESSOR_SIZE], *accessor;
-	strncpy(accbuf, accessor_obj, (MAX_ACCESSOR_SIZE - 1) * sizeof(CHR));
+	strncpy(accbuf, accessor_obj, (MAX_ACCESSOR_SIZE - 1));
 	
 	accessor = (CHR *)accbuf;
 	toml_accessor_t final = {.ok = 0, .data_type = type};
