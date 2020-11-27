@@ -59,11 +59,18 @@ INAT main(INAT argc, CHR *argv[])
 			"You might be able to resolve this by using Mesa software rendering.\n\n"
 			"SDL Error: %s", SDL_GetError());
 
+	/* Initialize GLEW */
+	glewExperimental = GL_TRUE;
+	GLenum glewError = glewInit();
+	if(glewError != GLEW_OK) errwindow("Error initializing GLEW! %s\n", glewGetErrorString(glewError));
+
 	/* This makes our buffer swap syncronized with the monitor's vertical refresh */
 	SDL_GL_SetSwapInterval(1);
 
 	if (get_conf_prop_err("window.start_fullscreen", gameconf, TOML_BOOL).u.d.u.b) togglefullscreen();
 
+	glClearColor(1.f, 0.f, 1.f, 0.f);
+	
 	while (!primarywin.quit) {
 		SDL_Event Event;
 		while (SDL_PollEvent(&Event)) {
@@ -78,7 +85,6 @@ INAT main(INAT argc, CHR *argv[])
 
 		SDL_GetWindowSize(primarywin.window, &primarywin.width, &primarywin.height);
 
-		glClearColor(1.f, 0.f, 1.f, 0.f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		SDL_GL_SwapWindow(primarywin.window);
