@@ -22,4 +22,9 @@ H_EXTERN X0 errwindow(const CHR *s, ...);
 H_EXTERN X0 togglefullscreen();
 /* Cleanup before exit */
 H_EXTERN X0 cleanup();
+/* Retrieve a config property and trigger an SDL error if not found */
+H_EXTERN toml_accessor_t get_conf_prop_err(
+	const CHR *accessor_obj,
+	toml_table_t *table,
+	toml_type_t type);
 #endif

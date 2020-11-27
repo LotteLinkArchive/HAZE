@@ -5,7 +5,6 @@
 #include <string.h>
 #include "../shared/hzshared.h"
 #include "engine.h"
-#include "tomlext.h"
 #include <errno.h>
 
 #define DEFWIDTH 800
