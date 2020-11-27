@@ -7,7 +7,7 @@ toml_accessor_t get_conf_prop_err(
 	toml_table_t *table,
 	toml_type_t type)
 {
-	toml_accessor_t final = toml_accessor_gen(accessor_obj, table, type);
+	toml_accessor_t final = toml_accessor_gen(table, type, accessor_obj);
 
 	if (!final.ok) errwindow(
 		"TOML Accessor Failure (%s)\n\n"
