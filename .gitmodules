@@ -4,6 +4,3 @@
 [submodule "src/lib/stb"]
 	path = src/lib/stb
 	url = https://github.com/nothings/stb
-[submodule "subprojects/libhztoml"]
-	path = subprojects/libhztoml
-	url = https://git.lotte.link/naphtha/libhztoml
