@@ -16,4 +16,7 @@ enum glblstate {
 
 typedef U8 STATUS;
 
+/* Get string form off error code */
+const CHR *hz_err_string(STATUS code);
+
 #endif
