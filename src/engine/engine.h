@@ -27,4 +27,7 @@ H_EXTERN toml_accessor_t get_conf_prop_err(
 	const CHR *accessor_obj,
 	toml_table_t *table,
 	toml_type_t type);
+/* Malloc/realloc which reports memory errors and exits. */
+H_EXTERN X0 *oomrealloc(X0 *ptr, SX size);
+#define oommalloc(size) oomrealloc(NULL, size);
 #endif
