@@ -4,6 +4,7 @@
 #include "../lib/stb/stb_image.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <inttypes.h>
 #include <fcntl.h>
@@ -27,6 +28,7 @@ I32 main(I32 argc, CHR *argv[])
 
 	struct srtexhdr newsrt = SRT_INIT;
 	I32 x, y, z;
+	stbi_set_flip_vertically_on_load(true);
 	idata = (CHR *)stbi_load(argv[1], &x, &y, &z, 4);
 	newsrt.width = (U32)x;
 	newsrt.height = (U32)y;
