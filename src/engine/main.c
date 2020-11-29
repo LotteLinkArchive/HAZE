@@ -83,7 +83,7 @@ INAT main(INAT argc, CHR *argv[])
 	if (get_conf_prop_err("window.start_fullscreen", gameconf, TOML_BOOL).u.d.u.b) togglefullscreen();
 
 	glClearColor(1.f, 0.f, 1.f, 0.f);
-	
+
 	while (!primarywin.quit) {
 		SDL_Event Event;
 		while (SDL_PollEvent(&Event)) {
@@ -99,6 +99,7 @@ INAT main(INAT argc, CHR *argv[])
 		SDL_GetWindowSize(primarywin.window, &primarywin.width, &primarywin.height);
 
 		glClear(GL_COLOR_BUFFER_BIT);
+		use_shader_program("puckprog", true);
 
 		SDL_GL_SwapWindow(primarywin.window);
 	}
