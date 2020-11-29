@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "config.h"
 #include "enumstr.h"
+#include "globj.h"
 #include "pathy.h"
 
 struct hz_bglobj *glshaders = NULL;
@@ -76,14 +77,13 @@ X0 init_shaders()
 			errwindow("!!!GLSL Shader compile failed!!! (%s)\n\n%s", key, infolog);
 		}
 
-		glshaders = oomrealloc(glshaders, (glshader_count + 1) * sizeof(struct hz_bglobj));
 		struct hz_bglobj packaged = {
 			.namehash = STRHASH(key),
 			.glid.u = glshader,
 			.failed = false	
 		};
-		glshaders[glshader_count] = packaged;
-		glshader_count++;
+		
+		add_new_bglobj(&glshaders, &glshader_count, packaged);
 	}
 
 	sort_bglobj_list(glshaders, glshader_count);
@@ -124,9 +124,7 @@ X0 init_shaders()
 			errwindow("!!!GLSL Program link failed!!! (%s)\n\n%s", key, infolog);
 		}
 
-		glprograms = oomrealloc(glprograms, (glprogram_count + 1) * sizeof(struct hz_bglobj));
-		glprograms[glprogram_count] = glprogram;
-		glprogram_count++;
+		add_new_bglobj(&glprograms, &glprogram_count, glprogram);
 
 		for (si = 0; si < toml_array_nelem(uniforms); si++) {
 			toml_datum_t name = toml_string_at(uniforms, si);
@@ -144,9 +142,7 @@ X0 init_shaders()
 					key, name.u.s);
 			free(name.u.s);
 
-			gluniforms = oomrealloc(gluniforms, (gluniform_count + 1) * sizeof(struct hz_bglobj));
-			gluniforms[gluniform_count] = gluniform;
-			gluniform_count++;
+			add_new_bglobj(&gluniforms, &gluniform_count, gluniform);
 		}
 	}
 

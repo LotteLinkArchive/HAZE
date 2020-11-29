@@ -14,4 +14,5 @@ struct hz_bglobj {
 H_EXTERN INAT bglobjsrch(struct hz_bglobj *o, INAT l, INAT r, U64 x);
 H_EXTERN struct hz_bglobj get_bglobj(struct hz_bglobj *objlist, UNAT objlist_count, U64 snmid);
 H_EXTERN X0 sort_bglobj_list(struct hz_bglobj *objlist, UNAT objlist_count);
+H_EXTERN X0 add_new_bglobj(struct hz_bglobj **objlist, UNAT *objlist_count, struct hz_bglobj newobj);
 #endif

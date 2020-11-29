@@ -1,4 +1,5 @@
 #include "globj.h"
+#include "engine.h"
 
 INAT bglobjsrch(struct hz_bglobj *o, INAT l, INAT r, U64 x) 
 { 
@@ -33,4 +34,11 @@ X0 sort_bglobj_list(struct hz_bglobj *objlist, UNAT objlist_count)
 
 		SWAP(objlist[loindex], objlist[i]); 
 	} 
+}
+
+X0 add_new_bglobj(struct hz_bglobj **objlist, UNAT *objlist_count, struct hz_bglobj newobj)
+{
+	*objlist = oomrealloc(*objlist, ((*objlist_count) + 1) * sizeof(struct hz_bglobj));
+	(*objlist)[*objlist_count] = newobj;
+	(*objlist_count)++;
 }
