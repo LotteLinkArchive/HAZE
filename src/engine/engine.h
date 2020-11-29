@@ -15,6 +15,8 @@ struct hzwinprop {
 
 extern struct hzwinprop primarywin;
 extern toml_table_t *gameconf;
+extern CHR *gameconf_path;
+extern CHR *gameconf_dir;
 
 /* Display a fatal error via SDL */
 H_EXTERN X0 errwindow(const CHR *s, ...);

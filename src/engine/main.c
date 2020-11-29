@@ -6,6 +6,9 @@
 #include "../shared/hzshared.h"
 #include "engine.h"
 #include <errno.h>
+#include <cwalk.h>
+#include "config.h"
+#include "shaders.h"
 
 #define DEFWIDTH 800
 #define DEFHEIGHT 600
@@ -13,6 +16,8 @@
 /* Declared in engine.h */
 __extension__ struct hzwinprop primarywin = {};
 toml_table_t *gameconf;
+CHR *gameconf_path;
+CHR *gameconf_dir;
 
 INAT main(INAT argc, CHR *argv[])
 {
@@ -26,11 +31,17 @@ INAT main(INAT argc, CHR *argv[])
 			"The very first argument must be the relative or absolute path to a TOML game config file."); 
 
 	/* Open the config file and parse content */
+	gameconf_path = argv[1];
+	SX tpl = strlen(gameconf_path);
+	cwk_path_get_dirname(gameconf_path, &tpl);
+	static CHR gcd[MAX_PATH_LENGTH];
+	gameconf_dir = (CHR *)gcd;
+	strncpy(gameconf_dir, gameconf_path, tpl);
 	FILE* fp;
 	CHR toml_errbuf[255];
-	if (0 == (fp = fopen(argv[1], "r")))
+	if (0 == (fp = fopen(gameconf_path, "r")))
 		errwindow("Unable to open game config file!\n(Path: %s)\n\nValue of ERRNO: %u\n"
-			"ERRNO Translation: %s", argv[1], errno, strerror(errno));
+			"ERRNO Translation: %s", gameconf_path, errno, strerror(errno));
 	gameconf = toml_parse_file(fp, toml_errbuf, sizeof(toml_errbuf));
 	fclose(fp);      
 	if (0 == gameconf)
@@ -62,6 +73,9 @@ INAT main(INAT argc, CHR *argv[])
 	glewExperimental = GL_TRUE;
 	GLenum glewError = glewInit();
 	if(glewError != GLEW_OK) errwindow("Error initializing GLEW! %s\n", glewGetErrorString(glewError));
+
+	/* Initialize shaders - compiling, linking to programs, reading configs, etc */
+	init_shaders();
 
 	/* This makes our buffer swap syncronized with the monitor's vertical refresh */
 	SDL_GL_SetSwapInterval(1);

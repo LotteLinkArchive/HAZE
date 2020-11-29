@@ -3,3 +3,16 @@ width = 640
 height = 480
 title = "HAZE Test Game"
 start_fullscreen = false
+
+[glsl]
+depot = "shaders"
+
+	[glsl.shaders]
+	puckfragment = { file = "puckfragment.glsl", type = "GL_FRAGMENT_SHADER" }
+	puckvertex = { file = "puckvertex.glsl", type = "GL_VERTEX_SHADER" }
+
+	[glsl.programs]
+		[glsl.programs.puckprog]
+		shaders = ["puckfragment", "puckvertex"]
+		uniforms = []
+		vformat = "HZ_COLOUR_TEX_VERTEX"
