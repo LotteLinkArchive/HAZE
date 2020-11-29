@@ -1,1 +1,1 @@
-hzshared = library('hzshared', ['umman.c', 'crypto.c', 'hztexldr.c', 'errors.c'], version : '0.0.0', soversion : '0', install : true)
+hzshared = static_library('hzshared', ['umman.c', 'crypto.c', 'hztexldr.c', 'errors.c'], dependencies : [xxhash_dep], install : true)

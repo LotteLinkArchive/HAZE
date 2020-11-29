@@ -1,4 +1,5 @@
 #include "crypto.h"
+#include <xxhash.h>
 
 U16 fnv1b16(const U8 *bytes, SX length)
 {

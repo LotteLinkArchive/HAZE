@@ -18,8 +18,6 @@ UNAT gluniform_count = 0;
 
 U8 current_vertex_format = HZ_NO_FORMAT;
 
-#define STRHASH(STR) fnv1a64((U8 *)(STR), strlen(STR) * sizeof(CHR))
-
 struct hz_bglobj get_bglobj(struct hz_bglobj *objlist, UNAT objlist_count, U64 snmid)
 {
 	for (UNAT si = 0; si < objlist_count; si++) {
