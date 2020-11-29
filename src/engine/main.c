@@ -99,7 +99,6 @@ INAT main(INAT argc, CHR *argv[])
 		SDL_GetWindowSize(primarywin.window, &primarywin.width, &primarywin.height);
 
 		glClear(GL_COLOR_BUFFER_BIT);
-		use_shader_program("puckprog", true);
 
 		SDL_GL_SwapWindow(primarywin.window);
 	}
