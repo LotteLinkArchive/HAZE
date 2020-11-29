@@ -20,13 +20,13 @@ U8 current_vertex_format = HZ_NO_FORMAT;
 
 INAT bglobjsrch(struct hz_bglobj *o, INAT l, INAT r, U64 x) 
 { 
-    if (r >= l) { 
-        INAT mid = l + (r - l) / 2; 
-        if (o[mid].namehash == x) return mid; 
-        if (o[mid].namehash > x) return bglobjsrch(o, l, mid - 1, x); 
-        return bglobjsrch(o, mid + 1, r, x); 
-    }
-    return -1; 
+	if (r >= l) { 
+		INAT mid = l + (r - l) / 2; 
+		if (o[mid].namehash == x) return mid; 
+		if (o[mid].namehash > x) return bglobjsrch(o, l, mid - 1, x); 
+		return bglobjsrch(o, mid + 1, r, x); 
+	}
+	return -1; 
 } 
 
 struct hz_bglobj get_bglobj(struct hz_bglobj *objlist, UNAT objlist_count, U64 snmid)
