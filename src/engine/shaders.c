@@ -171,12 +171,8 @@ INAT get_uniform_location(const CHR *program, const CHR *uniform)
 	struct hz_bglobj obj = get_bglobj(gluniforms, gluniform_count, STRHASH(program) ^ STRHASH(uniform));
 	if (!obj.failed) return obj.glid.i;
 
+	errwindow("Attempted to retrieve unknown uniform %s for GLSL shader program %s!", uniform, program);
 	return -1;
-}
-
-struct hz_bglobj get_program(const CHR *name)
-{
-	return get_bglobj(glprograms, glprogram_count, STRHASH(name));
 }
 
 X0 btset_vertex_format(U8 vtype)
@@ -228,7 +224,8 @@ vfsignored:
 
 X0 use_shader_program(const CHR *name, U1 set_format)
 {
-	struct hz_bglobj program = get_program(name);
+	struct hz_bglobj program = get_bglobj(glprograms, glprogram_count, STRHASH(name));
+	if (program.failed) errwindow("Failed to activate GLSL Shader Program %s", name);
 
 	if (set_format) btset_vertex_format(program.vtype);
 	glUseProgram(program.glid.u);

@@ -15,7 +15,6 @@ enum hz_vertex_formats {      /* F = R32 */
 X0 init_shaders();
 
 INAT get_uniform_location(const CHR *program, const CHR *uniform);
-struct hz_bglobj get_program(const CHR *name);
 X0 btset_vertex_format(U8 vtype);
 X0 use_shader_program(const CHR *name, U1 set_format);
 
